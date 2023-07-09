@@ -78,6 +78,13 @@ npm install
 
 For local development, **[nodemon](https://nodemon.io/)** is used, which restarts the node service when changes are made to the TypeScript sources. Here the sources are recompiled and the service is restarted.
 
+remove the origin bookshop.db and redeploy it, because the origin table name in the origin db isn't correct 
+```
+cds deploy
+```
+
+run the application
+
 ```
 npm run dev
 ```
