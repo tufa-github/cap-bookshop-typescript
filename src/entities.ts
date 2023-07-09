@@ -1,15 +1,9 @@
 export namespace cap.bookshop.typescript {
-    export interface IAuthor extends IManaged {
-        ID: number;
-        name: string;
-        dateOfBirth: Date;
-        dateOfDeath: Date;
-        placeOfBirth: string;
-        placeOfDeath: string;
-        books?: IBook[];
-    }
-
-    export interface IBook extends IManaged {
+    export interface IBook {
+        createdAt?: Date;
+        createdBy?: string;
+        modifiedAt?: Date;
+        modifiedBy?: string;
         ID: number;
         title: string;
         descr: string;
@@ -21,59 +15,123 @@ export namespace cap.bookshop.typescript {
         price: number;
         currency: sap.common.ICurrencies;
         currency_code?: string;
+        texts: ITexts[];
+        localized?: ITexts;
     }
 
-    export interface IGenre extends sap.common.ICodeList {
+    export interface IAuthor {
+        createdAt?: Date;
+        createdBy?: string;
+        modifiedAt?: Date;
+        modifiedBy?: string;
+        ID: number;
+        name: string;
+        dateOfBirth: Date;
+        dateOfDeath: Date;
+        placeOfBirth: string;
+        placeOfDeath: string;
+        books?: IBook[];
+    }
+
+    export interface IGenre {
+        name: string;
+        descr: string;
         ID: number;
         parent?: IGenre;
         parent_ID?: number;
         children: IGenre[];
+        texts: ITexts[];
+        localized?: ITexts;
+    }
+
+    export interface ITexts {
+        locale: string;
+        ID: number;
+        title: string;
+        descr: string;
+    }
+
+    export interface ITexts {
+        locale: string;
+        name: string;
+        descr: string;
+        ID: number;
     }
 
     export enum Entity {
-        Author = "cap.bookshop.typescript.Author",
         Book = "cap.bookshop.typescript.Book",
+        Author = "cap.bookshop.typescript.Author",
         Genre = "cap.bookshop.typescript.Genre",
+        Texts = "cap.bookshop.typescript.Genre.texts",
     }
 
     export enum SanitizedEntity {
-        Author = "Author",
         Book = "Book",
+        Author = "Author",
         Genre = "Genre",
+        Texts = "Texts",
     }
 }
 
 export namespace sap.common {
-    export interface ICodeList {
+    export interface ILanguages {
         name: string;
         descr: string;
-    }
-
-    export interface ICountries extends sap.common.ICodeList {
         code: string;
+        texts: ITexts[];
+        localized?: ITexts;
     }
 
-    export interface ICurrencies extends sap.common.ICodeList {
+    export interface ICountries {
+        name: string;
+        descr: string;
+        code: string;
+        texts: ITexts[];
+        localized?: ITexts;
+    }
+
+    export interface ICurrencies {
+        name: string;
+        descr: string;
         code: string;
         symbol: string;
+        texts: ITexts[];
+        localized?: ITexts;
     }
 
-    export interface ILanguages extends sap.common.ICodeList {
+    export interface ITexts {
+        locale: string;
+        name: string;
+        descr: string;
+        code: string;
+    }
+
+    export interface ITexts {
+        locale: string;
+        name: string;
+        descr: string;
+        code: string;
+    }
+
+    export interface ITexts {
+        locale: string;
+        name: string;
+        descr: string;
         code: string;
     }
 
     export enum Entity {
-        CodeList = "sap.common.CodeList",
+        Languages = "sap.common.Languages",
         Countries = "sap.common.Countries",
         Currencies = "sap.common.Currencies",
-        Languages = "sap.common.Languages",
+        Texts = "sap.common.Currencies.texts",
     }
 
     export enum SanitizedEntity {
-        CodeList = "CodeList",
+        Languages = "Languages",
         Countries = "Countries",
         Currencies = "Currencies",
-        Languages = "Languages",
+        Texts = "Texts",
     }
 }
 
@@ -91,13 +149,8 @@ export namespace CatalogService {
         price: number;
         currency: ICurrencies;
         currency_code?: string;
-    }
-
-    export interface ICurrencies {
-        name: string;
-        descr: string;
-        code: string;
-        symbol: string;
+        texts: ITexts[];
+        localized?: ITexts;
     }
 
     export interface IGenre {
@@ -107,6 +160,38 @@ export namespace CatalogService {
         parent?: IGenre;
         parent_ID?: number;
         children: IGenre[];
+        texts: ITexts[];
+        localized?: ITexts;
+    }
+
+    export interface ICurrencies {
+        name: string;
+        descr: string;
+        code: string;
+        symbol: string;
+        texts: ITexts[];
+        localized?: ITexts;
+    }
+
+    export interface ITexts {
+        locale: string;
+        ID: number;
+        title: string;
+        descr: string;
+    }
+
+    export interface ITexts {
+        locale: string;
+        name: string;
+        descr: string;
+        ID: number;
+    }
+
+    export interface ITexts {
+        locale: string;
+        name: string;
+        descr: string;
+        code: string;
     }
 
     export enum ActionSubmitOrder {
@@ -122,43 +207,21 @@ export namespace CatalogService {
 
     export enum Entity {
         Book = "CatalogService.Book",
-        Currencies = "CatalogService.Currencies",
         Genre = "CatalogService.Genre",
+        Currencies = "CatalogService.Currencies",
+        Texts = "CatalogService.Currencies.texts",
     }
 
     export enum SanitizedEntity {
         Book = "Book",
-        Currencies = "Currencies",
         Genre = "Genre",
+        Currencies = "Currencies",
+        Texts = "Texts",
     }
 }
 
 export type User = string;
 
-export interface ICuid {
-    ID: string;
-}
+export enum Entity {}
 
-export interface IManaged {
-    createdAt?: Date;
-    createdBy?: string;
-    modifiedAt?: Date;
-    modifiedBy?: string;
-}
-
-export interface ITemporal {
-    validFrom: Date;
-    validTo: Date;
-}
-
-export enum Entity {
-    Cuid = "cuid",
-    Managed = "managed",
-    Temporal = "temporal",
-}
-
-export enum SanitizedEntity {
-    Cuid = "Cuid",
-    Managed = "Managed",
-    Temporal = "Temporal",
-}
+export enum SanitizedEntity {}
