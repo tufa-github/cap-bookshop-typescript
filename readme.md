@@ -101,6 +101,12 @@ The following script can be used to deploy to the local SQLite database:
 npm run deploy
 ```
 
+### Local test
+Install REST Client plugin in VS code
+start the cap app with: npm run dev
+send request from the test.http 
+
+
 ## MTA Definition
 
 In `mta.yaml` you can find an example how to configure it for the TypeScript project.
