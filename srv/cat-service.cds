@@ -1,13 +1,6 @@
 using {cap.bookshop.typescript as my} from '../db/schema';
 
-service CatalogService { 
-
-  @readonly
-  entity Author as projection on my.Author
-
-  @requires: 'authenticated-user'
-  action likeAuthor(author : my.Author:ID);
-
+service CatalogService @(path:'/odata') { 
 
   @readonly
   entity Book as projection on my.Book {
@@ -21,15 +14,10 @@ service CatalogService {
   action submitOrder(book : Book:ID, amount : Integer);
 }
 
-/*
-service demoService {
+service demoService @(path:'/demo') {
 
-  entity Author as projection on my.Author excluding {
-    createdBy,
-    modifiedBy
-  };
+  entity Author as projection on my.Author;
 
-  @requires_ : 'authenticated-user'
+  @requires: 'authenticated-user'
   action likeAuthor(author : Author:ID);
 }
-*/

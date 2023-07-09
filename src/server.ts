@@ -13,28 +13,27 @@ export class Server {
 
         await cds.connect("db");
         await cds
-            .serve("all")
+            .serve("CatalogService")
             .at("odata")
             .in(app)
             .with(srv => hdl(srv));
 
-        // Redirect requests to the OData Service
-        app.get('/', function(req, res) {
-            res.redirect('/odata/')
-        })
-
-        /*
-        await cds
+            await cds
             .serve("demoService")
             .at("demo")
             .in(app)
             .with(srv => hdl(srv));
 
+
+        // Redirect requests to the OData Service
+        app.get('/', function(req, res) {
+            res.redirect('/odata/')
+        })
+        
         // Redirect requests to the OData Service
         app.get('/', function(req, res) {
             res.redirect('/demo/')
         })
-        */
 
         // Run the server.
         const port = process.env.PORT || 3001;
