@@ -74,6 +74,18 @@ Install all dependencies:
 npm install
 ```
 
+```
+npm install typescript
+```
+
+```
+npm install --save-dev cds2types
+```
+
+```
+npm install cds-routing-handlers
+```
+
 ### Local Development
 
 For local development, **[nodemon](https://nodemon.io/)** is used, which restarts the node service when changes are made to the TypeScript sources. Here the sources are recompiled and the service is restarted.
