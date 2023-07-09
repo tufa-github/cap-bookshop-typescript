@@ -23,6 +23,19 @@ export class Server {
             res.redirect('/odata/')
         })
 
+        /*
+        await cds
+            .serve("demoService")
+            .at("demo")
+            .in(app)
+            .with(srv => hdl(srv));
+
+        // Redirect requests to the OData Service
+        app.get('/', function(req, res) {
+            res.redirect('/demo/')
+        })
+        */
+
         // Run the server.
         const port = process.env.PORT || 3001;
         app.listen(port, async () => {

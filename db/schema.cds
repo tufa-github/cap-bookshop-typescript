@@ -17,6 +17,7 @@ entity Book : managed {
       currency : Currency;
 }
 
+/*
 entity Author : managed {
   key ID           : Integer;
       name         : String(111);
@@ -24,8 +25,18 @@ entity Author : managed {
       dateOfDeath  : Date;
       placeOfBirth : String;
       placeOfDeath : String;
-      books        : Association to many Book
-                       on books.author = $self;
+      books        : Association to many Book on books.author = $self;
+}
+*/
+
+entity Author : managed { 
+  key ID : Integer;
+  name   : String(111);
+  books  : Association to many Book on books.author = $self;
+}
+
+extend Author with {
+  like   : Integer;
 }
 
 /**

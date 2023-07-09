@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "A simple self-contained bookshop service.",
     "dependencies": {
-        "@sap/cds": "^5.1.5",
+        "@sap/cds": "^6",
         "cds-routing-handlers": "^3.0.7",
         "express": "^4.17.1",
         "reflect-metadata": "^0.1.13"

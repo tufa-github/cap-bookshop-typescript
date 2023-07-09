@@ -25,4 +25,17 @@ export class FunctionHandler {
             .where({ ID: bookId, stock: { ">=": amount } });
         n > 0 || req.error(409, `${amount} exceeds stock for book #${bookId}`);
     }
+
+    @Action(CatalogService.ActionLikeAuthor.name)
+    public async likeAuthor(
+        @Param(CatalogService.ActionLikeAuthor.paramAuthor) AuthorId: CatalogService.IAuthor["ID"],
+        @Req() req: any
+    ): Promise<void> {
+        console.log(`Action ${CatalogService.ActionLikeAuthor.name} called`);
+        const n = await cds
+            .update(CatalogService.SanitizedEntity.Author)
+            .with ({ like: {'+=': 1 }})
+            .where ({ ID: AuthorId });
+        n > 0 || req.error(404, `${AuthorId} doesn't exist!`);
+    }
 }

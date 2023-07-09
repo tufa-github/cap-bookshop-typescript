@@ -61,6 +61,17 @@ Authorization: Basic alice:
 GET http://localhost:3001/odata/Book?$select=stock
 Authorization: Basic alice:
 
+###
+GET http://localhost:3001/demo/Author
+
+### update like with REST command directly
+POST http://localhost:3001/demo/likeAuthor
+Content-Type: application/json
+Authorization: Basic alice:
+
+{ "author":101 }
+
+
 
 ### increas like with 1
 POST http://localhost:3001/demo/likeAuthorID_CQL
@@ -75,12 +86,6 @@ Content-Type: application/json
 Authorization: Basic alice:
 
 { "author":150 }
-
-### update like with REST command directly
-PUT http://localhost:3001/demo/Authors/101
-Content-Type: application/json
-Authorization: Basic alice:
-{ "like":100 }
 
 ###
 POST http://localhost:3001/demo/likeAuthor
